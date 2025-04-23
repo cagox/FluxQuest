@@ -1,14 +1,15 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-using System.Linq;
-using System;
 
 //This is a tool that will generate a pallet of colored tiles.
 //Each tile will be 64x64, and the pallet can be edited by adding
 //to or removing from colorList. Soon I will create a color list
 //for the tiles I want for this project. These will mostly become
 //the "Ground" for the project.
+
+
+
 public class DistinctTileTextureGenerator
 {
     [MenuItem("Tools/Generate Distinct Tile Grid PNG")]
@@ -17,10 +18,26 @@ public class DistinctTileTextureGenerator
         // Define a list of visually distinct colors
         Color[] colorList = new Color[]
         {
-            HexToColor("#FF00FF"),
-            HexToColor("#FFFF00"),
-            HexToColor("#a09fe0"), //Pretty Purplish Mauvish color for testing
-            Color.red,
+            FluxColor.theVoid,
+            FluxColor.earth,
+            FluxColor.wind,
+            FluxColor.water,
+            FluxColor.fire, 
+            FluxColor.nature, 
+            FluxColor.forest, 
+            FluxColor.life, 
+            FluxColor.death, 
+            FluxColor.between, 
+            FluxColor.space, 
+            FluxColor.spirit, 
+            FluxColor.nullAffinity,
+            FluxColor.plains,
+            FluxColor.desert, 
+            FluxColor.ocean, 
+            FluxColor.lake,
+            FluxColor.poison,
+            FluxColor.chaos,
+            //These might be useful, I will trim them down more later.
             Color.green,
             Color.blue,
             Color.yellow,
@@ -70,7 +87,7 @@ public class DistinctTileTextureGenerator
         while (ourColors.Length < totalTiles)
         {
             //ourColors = ourColors.Concat(colorList.OrderBy(c => rng.Next())).ToArray();
-            ourColors = AppendColor(ourColors, Color.black);
+            ourColors = FluxColor.AppendColor(ourColors, Color.black);
         }
 
         // Fill each tile with its own unique, distinct color
@@ -98,7 +115,7 @@ public class DistinctTileTextureGenerator
         texture.Apply();
 
         // Save the texture to the selected folder in the Project view
-        string assetPath = GetSelectedPathOrFallback();
+        string assetPath = "Assets"; //GetSelectedPathOrFallback();
         string fileName = "DistinctTileGrid.png";
         string relativePath = Path.Combine(assetPath, fileName);
         string absolutePath = Path.Combine(Application.dataPath.Substring(0, Application.dataPath.Length - 6), relativePath);
@@ -108,62 +125,7 @@ public class DistinctTileTextureGenerator
         AssetDatabase.Refresh();
     }
 
-    // Helper: get the path of the selected folder or fallback to Assets
-    private static string GetSelectedPathOrFallback()
-    {
-        string path = "Assets";
-        UnityEngine.Object obj = Selection.activeObject;
-        if (obj != null)
-        {
-            string selectedPath = AssetDatabase.GetAssetPath(obj);
-            if (!string.IsNullOrEmpty(selectedPath))
-            {
-                if (Directory.Exists(selectedPath))
-                    path = selectedPath;
-                else
-                    path = Path.GetDirectoryName(selectedPath);
-            }
-        }
-        return path;
-    }
-
-    public static Color HexToColor(string hex)
-    {
-        if (hex.StartsWith("#"))
-            hex = hex.Substring(1);
-
-        byte r = 255, g = 255, b = 255, a = 255;
-
-        if (hex.Length == 6) // RRGGBB
-        {
-            r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-            g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-            b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-        }
-        else if (hex.Length == 8) // RRGGBBAA
-        {
-            r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-            g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-            b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-            a = byte.Parse(hex.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
-        }
-        else
-        {
-            Debug.LogWarning($"Invalid hex color: {hex}");
-        }
-
-        return new Color32(r, g, b, a);
-    }
-
-
-    public static Color[] AppendColor(Color[] array, Color newColor)
-    {
-        var list = array.ToList();
-        list.Add(newColor);
-        return list.ToArray();
-    }
-
-
+    
 }
 
 
