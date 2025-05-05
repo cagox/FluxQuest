@@ -23,5 +23,5 @@ As their world grows, dungeons will spawn that let them gain resources, as well 
 
 The world will be built up of tiles and plots. New tiles are created by planting "seeds" that cause properties to spread out from the central point to the tiles around them.  When new seeds are planted they can influence tiles that are already in place.
 
-
+As seeds are planted nearer the edges of the realm, the pocket dimension itself will grow to give more space to move, build, and plant seeds.
 
