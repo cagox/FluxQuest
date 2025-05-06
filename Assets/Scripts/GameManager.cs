@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
 
     private static GameManager _instance;
+    public bool ProductionMode; // Determines if save files are JSON or Binary.
 
     public static GameManager Instance
     {
@@ -26,6 +27,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        Debug.Log(Application.persistentDataPath);
+    }
 
 
 }
