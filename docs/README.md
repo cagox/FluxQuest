@@ -6,7 +6,8 @@ I am currently having issues getting GitHub to allow me to upgrade to premium, b
 
 ### Table of Contents
 1. [Discussion](#Discussion)
-2. [Class World](./ClassWorld.md)
+2. [Elements](#Elements)
+3. [Class World](./ClassWorld.md)
 
 
 ## Discussion
@@ -25,3 +26,21 @@ The world will be built up of tiles and plots. New tiles are created by planting
 
 As seeds are planted nearer the edges of the realm, the pocket dimension itself will grow to give more space to move, build, and plant seeds.
 
+## Elements
+These are the various elements discussed above so far. They don't necessarily have to be implemented in this order. For now, I am organizing thoughts, and breaking it down into things that need to be implemented.
+
+- Starts in a small void. A book and sphere are there. The player needs to interact with the book.
+- The player cannot walk past the boundaries of the void.
+- The player needs to be able to pick up the sphere and activate it, and interact with it.
+- The book tells the player to open their inventory and put the items in it. They need an inventory.
+- The player needs to be able to access the book from the inventory.
+- The player needs to be able to access the sphere from the inventory.
+- The player needs to be able to access their status screen.
+- The player needs to be able to plant the seeds.
+- The player needs to be able to place the bedding, and pick it up again.
+- Time needs to pass in some form.
+- The player needs food.
+- The player needs air.
+- The player needs sleep.
+- The player needs to be able to improve stats.
+- 
